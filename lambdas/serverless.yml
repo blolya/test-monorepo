@@ -11,6 +11,16 @@ provider:
 # functions
 functions:
 
+  cars:
+    handler: src/functions/cars/index.handler
+    events:
+      - http:
+          method: ANY
+          path: cars/
+      - http:
+          method: ANY
+          path: "cars/{proxy+}"
+
   trucks:
     handler: src/functions/trucks/index.handler
     events:

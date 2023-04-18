@@ -8,6 +8,10 @@ resource "aws_lambda_function" "$function_name" {
   runtime          = "nodejs18.x"
   filename         = "./lambdas/.serverless/$function_name.zip"
   source_code_hash = filebase64sha256("./lambdas/.serverless/$function_name.zip")
-  role             = aws_iam_role.iam_for_lambda.arn
+  role             = var.role_arn
+}
+
+output "invoke_arn_$function_name" {
+  value = aws_lambda_function.$function_name.invoke_arn
 }
 EOF

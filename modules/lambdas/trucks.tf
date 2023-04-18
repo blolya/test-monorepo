@@ -5,5 +5,9 @@ resource "aws_lambda_function" "trucks" {
   runtime          = "nodejs18.x"
   filename         = "./lambdas/.serverless/trucks.zip"
   source_code_hash = filebase64sha256("./lambdas/.serverless/trucks.zip")
-  role             = aws_iam_role.iam_for_lambda.arn
+  role             = var.role_arn
+}
+
+output "invoke_arn_trucks" {
+  value = aws_lambda_function.trucks.invoke_arn
 }
