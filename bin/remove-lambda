@@ -1,0 +1,34 @@
+#!/bin/bash
+
+function_name=$1
+
+scriptpath=$(dirname $0)
+config_file="$scriptpath/../modules/lambdas/$function_name.tf"
+
+function_dir="$scriptpath/../lambdas/src/functions/$function_name"
+
+echo "Do you wish to remove $config_file and $function_dir?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) break;;
+        No ) exit 1;;
+    esac
+done
+
+rm $config_file
+rm -rf $function_dir
+
+templates_dir="$scriptpath/templates"
+serverless_dir="$scriptpath/../lambdas"
+serverless_base_config=$(cat "$serverless_dir/serverless_base.yml")
+serverless_config_path="$serverless_dir/serverless.yml"
+rm $serverless_config_path
+echo "$serverless_base_config" > $serverless_config_path
+
+lambdas_dir="$scriptpath/../lambdas/src/functions"
+shopt -s nullglob
+for file_name in "$lambdas_dir"/*
+do
+    echo "$(function_name=$(basename $file_name) $templates_dir/lambda_serverless_config)" >> $serverless_config_path
+done
+shopt -u nullglob

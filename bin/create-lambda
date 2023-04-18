@@ -1,0 +1,36 @@
+#!/bin/bash
+
+function_name=$1
+
+scriptpath=$(dirname $0)
+lambdas_dir="$scriptpath/../lambdas/src/functions"
+for file_name in "$lambdas_dir"/*
+do
+    if [ "$(basename $file_name)" = "$function_name" ]; then
+        echo "Function with name $function_name already exists. Aborting ..."
+        exit 1
+    fi
+done
+
+echo "Creating function $function_name..."
+
+lambda_dir="$lambdas_dir/$function_name"
+mkdir $lambda_dir
+
+templates_dir="$scriptpath/templates"
+echo "$(function_name=$function_name $templates_dir/lambda)" > "$lambda_dir/index.ts"
+
+terraform_lambdas_config_dir="$scriptpath/../modules/lambdas"
+echo "$(function_name=$function_name $templates_dir/lambda_terraform_config)" > "$terraform_lambdas_config_dir/$function_name.tf"
+
+serverless_dir="$scriptpath/../lambdas"
+serverless_base_config=$(cat "$serverless_dir/serverless_base.yml")
+serverless_config_path="$serverless_dir/serverless.yml"
+rm $serverless_config_path
+echo "$serverless_base_config" > $serverless_config_path
+shopt -s nullglob
+for file_name in "$lambdas_dir"/*
+do
+    echo "$(function_name=$(basename $file_name) $templates_dir/lambda_serverless_config)" >> $serverless_config_path
+done
+shopt -u nullglob

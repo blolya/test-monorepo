@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cat << EOF
+
+  $function_name:
+    handler: src/functions/$function_name/index.handler
+    events:
+      - http:
+          method: ANY
+          path: $function_name/
+      - http:
+          method: ANY
+          path: "$function_name/{proxy+}"
+EOF

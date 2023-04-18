@@ -1,0 +1,12 @@
+service: 'my-baremetal-project'
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+package:
+   individually: true
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-west-3
+# functions
+functions:

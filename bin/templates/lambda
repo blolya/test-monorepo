@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cat << EOF
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+
+export const handler = async (_event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+    try {
+        const response = {
+            statusCode: 200,
+            body: 'GET $function_name/',
+        };
+        return response;
+    } catch (err) {
+        return {
+            statusCode: 500,
+            body: 'Internal Server Error',
+        };
+    }
+};
+EOF

@@ -1,0 +1,19 @@
+{
+  "name": "lambdas",
+  "version": "0.0.1",
+  "description": "AWS lambda functions repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.114",
+    "serverless-esbuild": "^1.43.1",
+    "serverless-offline": "^12.0.4"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7"
+  }
+}
