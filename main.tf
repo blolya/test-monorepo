@@ -15,6 +15,15 @@ provider "aws" {
 
 data "aws_caller_identity" "current" {}
 
+module "vpc" {
+  source = "./modules/vpc"
+}
+module "rds" {
+  source = "./modules/rds"
+  vpc_security_group_id = module.vpc.vpc_security_group_id
+  depends_on = [module.vpc]
+}
+
 module "iam" {
   source = "./modules/iam"
 }
