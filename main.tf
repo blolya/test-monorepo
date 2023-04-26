@@ -20,8 +20,11 @@ module "vpc" {
 }
 module "rds" {
   source = "./modules/rds"
-  vpc_security_group_id = module.vpc.vpc_security_group_id
   depends_on = [module.vpc]
+  vpc_security_group_id = module.vpc.vpc_security_group_id
+  db_name = var.DB_NAME
+  db_user = var.DB_USER
+  db_password = var.DB_PASSWORD
 }
 
 module "iam" {

@@ -1,4 +1,14 @@
-# variable "account_id"{
-#   type        = string
-#   description = "The account ID in which to create/manage resources"
-# }
+variable "DB_NAME" {
+  type = string
+  description = "Database name"
+}
+
+variable "DB_USER" {
+  type = string
+  description = "Database user name"
+}
+
+variable "DB_PASSWORD" {
+  type = string
+  description = "Database password"
+}

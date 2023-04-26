@@ -1,16 +1,16 @@
 variable "vpc_security_group_id" {}
 
-variable "DB_NAME" {
+variable "db_name" {
   type = string
   description = "Database name"
 }
 
-variable "DB_USER" {
+variable "db_user" {
   type = string
   description = "Database user name"
 }
 
-variable "DB_PASSWORD" {
+variable "db_password" {
   type = string
   description = "Database password"
 }
