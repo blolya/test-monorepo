@@ -21,6 +21,16 @@ functions:
           method: ANY
           path: "cars/{proxy+}"
 
+  ships:
+    handler: src/functions/ships/index.handler
+    events:
+      - http:
+          method: ANY
+          path: ships/
+      - http:
+          method: ANY
+          path: "ships/{proxy+}"
+
   trucks:
     handler: src/functions/trucks/index.handler
     events:
