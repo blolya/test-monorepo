@@ -5,7 +5,7 @@ export const handler = async (_event: APIGatewayProxyEvent): Promise<APIGatewayP
     try {
         const response = {
             statusCode: 200,
-            body: 'GET not so many cars/ ' + getRandomInt(100),
+            body: 'GET a lot of cars/ ' + getRandomInt(100),
         };
         return response;
     } catch (err) {
