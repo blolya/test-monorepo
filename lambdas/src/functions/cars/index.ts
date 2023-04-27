@@ -5,7 +5,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     try {
         const response = {
             statusCode: 200,
-            body: 'POST a lot of cars/ ' + getRandomInt(100) + ` with body ${event.body}`,
+            body: 'POST a lot of cars/ ' + getRandomInt(100) + ` with body ${JSON.stringify(event.body)}`
         };
         return response;
     } catch (err) {
