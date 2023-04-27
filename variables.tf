@@ -12,3 +12,7 @@ variable "DB_PASSWORD" {
   type = string
   description = "Database password"
 }
+
+variable "WEBFLOW_AUTH_TOKEN" {}
+
+variable "SITE_ID" {}

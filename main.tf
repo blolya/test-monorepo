@@ -40,12 +40,16 @@ module "iam" {
 module "lambdas" {
   source = "./modules/lambdas"
   role_arn = module.iam.role_arn
+  webflow_auth_token = var.WEBFLOW_AUTH_TOKEN
+  site_id = var.SITE_ID
   depends_on = [module.iam]
 }
 
 module "api" {
   source = "./modules/api"
+  invoke_arn_webflow-request-authorizer = module.lambdas.invoke_arn_webflow-request-authorizer
   invoke_arn_cars = module.lambdas.invoke_arn_cars
+  role_arn = module.iam.role_arn
   account_id = data.aws_caller_identity.current.account_id
   region = "eu-west-3"
   depends_on = [module.lambdas]

@@ -32,4 +32,6 @@ jobs:
           TF_VAR_DB_NAME: ${{ vars.DB_NAME }}
           TF_VAR_DB_USER: ${{ vars.DB_USER }}
           TF_VAR_DB_PASSWORD: ${{ secrets.DB_PASSWORD  }}
+          TF_VAR_WEBFLOW_AUTH_TOKEN: ${{ secrets.WEBFLOW_AUTH_TOKEN }}
+          TF_VAR_SITE_ID: ${{ vars.SITE_ID }}
         run: terraform apply -auto-approve
