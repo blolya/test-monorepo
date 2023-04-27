@@ -1,4 +1,4 @@
-variable "invoke_arn_webflow-request-authorizer" {}
+variable "invoke_arn_authorizer" {}
 variable "invoke_arn_cars" {}
 variable "region" {}
 variable "account_id" {}

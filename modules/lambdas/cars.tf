@@ -1,4 +1,3 @@
-
 resource "aws_lambda_function" "cars" {
   function_name    = "cars"
   handler          = "src/functions/cars/index.handler"

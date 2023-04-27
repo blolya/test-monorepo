@@ -41,15 +41,15 @@ functions:
           method: ANY
           path: "trucks/{proxy+}"
 
-  webflow-request-authorizer:
-    handler: src/functions/webflow-request-authorizer/index.handler
+  authorizer:
+    handler: src/functions/authorizer/index.handler
 #    environment:
 ##      WEBFLOW_AUTH_TOKEN: ${env:WEBFLOW_AUTH_TOKEN}
 ##      SITE_ID: ${env:SITE_ID}
     events:
       - http:
           method: ANY
-          path: webflow-request-authorizer/
+          path: authorizer/
       - http:
           method: ANY
-          path: "webflow-request-authorizer/{proxy+}"
+          path: "authorizer/{proxy+}"
