@@ -5,4 +5,3 @@ variable "account_id" {}
 variable "api_stage_name" {
   default = "dev"
 }
-variable "role_arn" {}

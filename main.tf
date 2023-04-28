@@ -51,7 +51,6 @@ module "api" {
   source = "./modules/api"
   depends_on = [module.lambdas]
 
-  role_arn = module.iam.role_arn
   account_id = data.aws_caller_identity.current.account_id
   region = "eu-west-3"
 
