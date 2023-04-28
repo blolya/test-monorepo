@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "authorizer" {
   function_name    = "authorizer"
-  handler          = "src/functions/webflow-request-authorizer/index.handler"
+  handler          = "src/functions/authorizer/index.handler"
   runtime          = "nodejs18.x"
   filename         = "./lambdas/.serverless/authorizer.zip"
   source_code_hash = filebase64sha256("./lambdas/.serverless/authorizer.zip")
